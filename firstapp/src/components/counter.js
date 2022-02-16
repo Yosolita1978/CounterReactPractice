@@ -4,13 +4,17 @@ const Counter = (props) => {
 const [count, setCount] = useState(0)
 
 function addCount(){
-    setCount((count +1));
+    if (count >= props.range){
+        console.log("Please stay in your range")
+    } else {
+        setCount((count + 1))
+    }
 }
 
 function subCount(){
 
-    if(count === 0){
-        console.log("Let's stay positive");
+    if(count <= 0){
+        console.log("Please stay positive");
     } else{
         setCount((count -1));
     }
@@ -24,7 +28,7 @@ function reset(){
         <div>
             <p>{props.range}</p>
             <p>{count}</p>
-            <button className="button" onClick={addCount}> + </button>
+            <button onClick={addCount}> + </button>
             <button onClick={subCount}> - </button>
             <button onClick={reset}> Reset </button>
 
